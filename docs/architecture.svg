@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 820" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#555"/></marker>
+    <style>
+      .t{font-size:15px;font-weight:700;fill:#222}.s{font-size:12px;fill:#555}.h{font-size:13px;font-weight:700;fill:#ff385c;letter-spacing:.5px}
+      .b{fill:#fff;stroke:#bbb;stroke-width:1.5;rx:10}.g{fill:#f7f7f7;stroke:#ddd;stroke-width:1.5;rx:14}.l{stroke:#555;stroke-width:1.5;fill:none;marker-end:url(#a)}
+    </style>
+  </defs>
+  <rect width="1280" height="820" fill="#fff"/>
+  <text x="40" y="44" font-size="24" font-weight="700" fill="#222">Vacation-rental marketplace: production architecture</text>
+
+  <rect class="g" x="40" y="70" width="230" height="690"/>
+  <text class="h" x="60" y="98">CLIENTS</text>
+  <rect class="b" x="60" y="115" width="190" height="64"/><text class="t" x="76" y="142">Web (React SSR)</text><text class="s" x="76" y="162">Listing, search, booking</text>
+  <rect class="b" x="60" y="200" width="190" height="64"/><text class="t" x="76" y="227">Mobile apps</text><text class="s" x="76" y="247">iOS / Android</text>
+  <rect class="b" x="60" y="285" width="190" height="80"/><text class="t" x="76" y="312">CDN + Edge</text><text class="s" x="76" y="332">Static assets, image resizing,</text><text class="s" x="76" y="348">edge cache for listing pages</text>
+  <rect class="b" x="60" y="386" width="190" height="64"/><text class="t" x="76" y="413">WAF + Rate limits</text><text class="s" x="76" y="433">Bot and abuse protection</text>
+  <rect class="b" x="60" y="471" width="190" height="80"/><text class="t" x="76" y="498">Global load balancer</text><text class="s" x="76" y="518">Geo routing to nearest</text><text class="s" x="76" y="534">healthy region</text>
+
+  <rect class="g" x="320" y="70" width="400" height="690"/>
+  <text class="h" x="340" y="98">APPLICATION (Kubernetes, multi-region, autoscaled)</text>
+  <rect class="b" x="340" y="115" width="360" height="64"/><text class="t" x="356" y="142">API gateway / BFF</text><text class="s" x="356" y="162">Auth (JWT), GraphQL/REST aggregation</text>
+  <rect class="b" x="340" y="200" width="170" height="64"/><text class="t" x="356" y="227">Listing service</text><text class="s" x="356" y="247">Content, photos, amenities</text>
+  <rect class="b" x="530" y="200" width="170" height="64"/><text class="t" x="546" y="227">Search service</text><text class="s" x="546" y="247">Query, ranking, filters</text>
+  <rect class="b" x="340" y="285" width="170" height="64"/><text class="t" x="356" y="312">Booking service</text><text class="s" x="356" y="332">Availability, pricing, holds</text>
+  <rect class="b" x="530" y="285" width="170" height="64"/><text class="t" x="546" y="312">Payments</text><text class="s" x="546" y="332">Idempotent, PSP webhooks</text>
+  <rect class="b" x="340" y="370" width="170" height="64"/><text class="t" x="356" y="397">Reviews service</text><text class="s" x="356" y="417">Ratings, moderation</text>
+  <rect class="b" x="530" y="370" width="170" height="64"/><text class="t" x="546" y="397">Messaging</text><text class="s" x="546" y="417">Host-guest chat</text>
+  <rect class="b" x="340" y="455" width="360" height="64"/><text class="t" x="356" y="482">Event bus (Kafka)</text><text class="s" x="356" y="502">Async: indexing, email, analytics, fraud</text>
+  <rect class="b" x="340" y="540" width="360" height="64"/><text class="t" x="356" y="567">Workers</text><text class="s" x="356" y="587">Image pipeline, notifications, search indexer</text>
+  <rect class="b" x="340" y="625" width="360" height="110"/><text class="t" x="356" y="652">Deployment</text><text class="s" x="356" y="672">CI/CD, blue-green releases, canaries</text><text class="s" x="356" y="690">HPA on CPU and RPS, per-service scaling</text><text class="s" x="356" y="708">Tracing, metrics, alerting (OpenTelemetry)</text>
+
+  <rect class="g" x="770" y="70" width="470" height="690"/>
+  <text class="h" x="790" y="98">DATA</text>
+  <rect class="b" x="790" y="115" width="210" height="80"/><text class="t" x="806" y="142">PostgreSQL</text><text class="s" x="806" y="162">Listings, bookings, users</text><text class="s" x="806" y="178">Primary, replicas, regional shards</text>
+  <rect class="b" x="1020" y="115" width="200" height="80"/><text class="t" x="1036" y="142">Redis</text><text class="s" x="1036" y="162">Sessions, hot listings,</text><text class="s" x="1036" y="178">availability locks</text>
+  <rect class="b" x="790" y="215" width="210" height="80"/><text class="t" x="806" y="242">OpenSearch</text><text class="s" x="806" y="262">Geo + full-text search,</text><text class="s" x="806" y="278">shards by geohash</text>
+  <rect class="b" x="1020" y="215" width="200" height="80"/><text class="t" x="1036" y="242">Object storage</text><text class="s" x="1036" y="262">Original photos, served</text><text class="s" x="1036" y="278">through the CDN</text>
+  <rect class="b" x="790" y="315" width="210" height="80"/><text class="t" x="806" y="342">Cassandra / DynamoDB</text><text class="s" x="806" y="362">Messages, availability</text><text class="s" x="806" y="378">calendar (write heavy)</text>
+  <rect class="b" x="1020" y="315" width="200" height="80"/><text class="t" x="1036" y="342">Data warehouse</text><text class="s" x="1036" y="362">Analytics, ranking</text><text class="s" x="1036" y="378">features, reporting</text>
+  <text class="h" x="790" y="440">SCALING STRATEGY</text>
+  <text class="s" x="790" y="466">Frontend: SSR + ISR on the edge, image CDN, code splitting,</text>
+  <text class="s" x="790" y="484">lazy-loaded galleries and maps.</text>
+  <text class="s" x="790" y="512">Backend: stateless services, horizontal autoscaling,</text>
+  <text class="s" x="790" y="530">async work through Kafka, idempotent booking writes.</text>
+  <text class="s" x="790" y="558">Storage: read replicas, Redis in front of hot reads,</text>
+  <text class="s" x="790" y="576">region sharding, calendars in a write-optimised store.</text>
+  <text class="s" x="790" y="604">Search: geohash shards, near-real-time indexing from</text>
+  <text class="s" x="790" y="622">Kafka events, separate read replicas for query load.</text>
+  <text class="s" x="790" y="650">Deployment: multi-region active-active, health-checked</text>
+  <text class="s" x="790" y="668">failover, canary releases, feature flags.</text>
+
+  <path class="l" d="M250 147H340"/><path class="l" d="M250 232 295 232 295 160 340 160"/>
+  <path class="l" d="M155 365V386"/><path class="l" d="M155 451V471"/>
+  <path class="l" d="M700 232H790"/><path class="l" d="M700 317 745 317 745 160 790 160"/>
+  <path class="l" d="M700 402 745 402 745 355 790 355"/><path class="l" d="M700 487 755 487 755 255 790 255"/>
+</svg>
+
